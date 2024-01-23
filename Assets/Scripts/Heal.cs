@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Heal : MonoBehaviour
 {
+    public AudioSource audioData;
 
     public int PlayerMaxHealth = 100;
     public int PlayerHealth = 100;
@@ -32,7 +33,13 @@ public class Heal : MonoBehaviour
             {
                 PlayerHealth += HealAmount;
                 MeatAmount -= 1;
+                if (MeatAmount > -1)
+            {
+                audioData.Play();
             }
+            }
+    
+    
         
     if (MeatAmount < 1)
         {
