@@ -5,20 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class Heal : MonoBehaviour
 {
+    //audio
     public AudioSource meat1audio;
     public AudioSource meat2audio;
     public AudioSource meat3audio;
 
+    //healing
     public int PlayerMaxHealth = 100;
     public int PlayerHealth = 100;
     public int HealAmount = 30;
     public int MeatAmountMax = 3;
     public int MeatAmount = 3;
 
+    //player damage
     public int PlayerDamage = 25;
 
+    //enemy health
     public int EnemyMaxHealth = 25;
 
+    //gameobjects
     public GameObject meat1;
     public GameObject meat2;
     public GameObject meat3;
@@ -26,21 +31,24 @@ public class Heal : MonoBehaviour
     public GameObject player;
     public GameObject sphere;
 
+    //timers
     private Timers timers;
 
+    //booleaans
     private bool isEating;
 
+    //mouse
     public Mouse mouse;
 
     
-    //Start
+    //start
     void Start()
     {
         chicken.SetActive(false);
     }
 
 
-    //Eat meat and heal "animation"
+    //eat meat and heal "animation"
     private IEnumerator MeatDestroy()
     {
         isEating = true;
@@ -64,10 +72,10 @@ public class Heal : MonoBehaviour
         isEating = false;
     }
 
-    //Update is called once per frame
+    //update is called once per frame
     void Update()
     {
-        //Right click function
+        //right click function
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
         if (MeatAmount > 0)
@@ -79,23 +87,23 @@ public class Heal : MonoBehaviour
         }  
         }
     
-        //No meat = no heal
+        //no meat = no heal
         if (MeatAmount < 1)
         {
         HealAmount = 0;
         }
 
-        //Health overdose
+        //health overdose
         if (PlayerHealth >= PlayerMaxHealth)
         {
         PlayerHealth = PlayerMaxHealth;
         }
 
-        //No health = die
+        //no health = die
         if (PlayerHealth < 1)
         {
         SceneManager.LoadScene(1);
         mouse.ShowMouse();
         }
-    }
+        }
 }

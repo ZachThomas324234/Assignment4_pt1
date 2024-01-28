@@ -180,10 +180,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4770389}
-  explosion: {fileID: 0}
+  explosion: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
   whatIsEnemies:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   bounciness: 0
   useGravity: 0
   explosionDamage: 0
@@ -1660,7 +1660,7 @@ MonoBehaviour:
   magazineSize: 100
   bulletsPerTap: 1
   allowButtonHold: 1
-  playerRb: {fileID: 0}
+  playerRb: {fileID: 1867760737375871789}
   recoilForce: 0
   fpsCam: {fileID: 1596349400}
   attackPoint: {fileID: 579220811}
