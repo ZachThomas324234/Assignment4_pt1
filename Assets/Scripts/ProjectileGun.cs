@@ -36,6 +36,9 @@ public class ProjectileGun : MonoBehaviour
     //bug fixing :D
     public bool allowInvoke = true;
 
+    //gun sound
+    public AudioSource revolverShot;
+
     private void Awake()
     {
         //make sure magazine is full
@@ -67,13 +70,14 @@ public class ProjectileGun : MonoBehaviour
         {
             //set bullets shot to 0
             bulletsShot = 0;
-
             Shoot();
         }
     }
 
     private void Shoot()
     {
+        revolverShot.Play();
+
         readyToShoot = false;
 
         //find the exact hit position using a raycast

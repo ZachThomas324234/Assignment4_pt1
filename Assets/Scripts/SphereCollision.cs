@@ -11,7 +11,8 @@ public class SphereCollision : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-        health.PlayerHealth -= 20;
+        health.PlayerHealth -= EnemyDamage;
+        Destroy(gameObject);
         }
     }
 }
