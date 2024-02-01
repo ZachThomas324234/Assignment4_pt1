@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Heal : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Heal : MonoBehaviour
 
     //enemy health
     public int EnemyMaxHealth = 25;
+    public int EnemyHealth = 30;
 
     //gameobjects
     public GameObject meat1;
@@ -39,6 +41,10 @@ public class Heal : MonoBehaviour
 
     //mouse
     public Mouse mouse;
+
+    //graphics
+    public TextMeshProUGUI meatDisplay;
+    public TextMeshProUGUI healthDisplay;
 
     
     //start
@@ -105,5 +111,13 @@ public class Heal : MonoBehaviour
         SceneManager.LoadScene(1);
         mouse.ShowMouse();
         }
+
+        //text of health amount
+        if (healthDisplay != null)
+            healthDisplay.SetText(PlayerHealth + " / " + PlayerMaxHealth);
+            
+            //text of meat amount
+        if (meatDisplay != null)
+            meatDisplay.SetText(MeatAmount + " / " + MeatAmountMax);
         }
 }
