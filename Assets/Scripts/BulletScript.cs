@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.gameObject.tag == "Player");
-        {
-            Destroy(gameObject);
-        }
+    if (collision.collider.CompareTag("Enemy"))
+    {
+        Destroy(gameObject);
+    }
     }
 }

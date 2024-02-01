@@ -39,6 +39,9 @@ public class ProjectileGun : MonoBehaviour
     //gun sound
     public AudioSource revolverShot;
 
+    //gun animation
+    public Animator gunReload;
+
     private void Awake()
     {
         //make sure magazine is full
@@ -61,7 +64,10 @@ public class ProjectileGun : MonoBehaviour
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         //reloading
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft <magazineSize && !reloading) Reload();
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft <magazineSize && !reloading) 
+        {
+            Reload();
+        }
         //reload automatically when trying to shoot without ammo
         if (readyToShoot && shooting && !reloading && bulletsLeft <= 0) Reload();
 
@@ -141,6 +147,7 @@ public class ProjectileGun : MonoBehaviour
     private void Reload()
         {
         reloading = true;
+        gunReload.Play("gunReload");
         Invoke("ReloadFinished", reloadTime);
         }
         private void ReloadFinished()

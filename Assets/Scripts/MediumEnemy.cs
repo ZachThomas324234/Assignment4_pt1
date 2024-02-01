@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class LightEnemy : MonoBehaviour
+public class MediumEnemy : MonoBehaviour
 {
     public SphereCollision enemyDamage;
     public heal1 playerDamage;
 
-    private heal1 enemyLightMaxHealth;
-    private heal1 enemyLightHealth;
+    private heal1 enemyMidMaxHealth;
+    private heal1 enemyMidHealth;
 
     public float cubeSize = 0.2f;
     public int cubesInRow = 5;
@@ -24,12 +24,12 @@ public class LightEnemy : MonoBehaviour
     public void InitializeHealth()
     {
         // Initialize unique health variables for each enemy
-        enemyLightMaxHealth = new heal1();
-        enemyLightHealth = new heal1();
+        enemyMidMaxHealth = new heal1();
+        enemyMidHealth = new heal1();
 
         // Set initial health values
-        enemyLightMaxHealth.EnemylightHealth = 30; // Adjust as needed
-        enemyLightHealth.EnemylightHealth = enemyLightMaxHealth.EnemylightHealth;
+        enemyMidMaxHealth.EnemymidHealth = 55; // Adjust as needed
+        enemyMidHealth.EnemymidHealth = enemyMidMaxHealth.EnemymidHealth;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,10 +43,10 @@ public class LightEnemy : MonoBehaviour
         if (collision.collider.CompareTag("Bullet"))
         {
             // Damage the enemy
-            enemyLightHealth.EnemylightHealth -= playerDamage.PlayerDamage;
+            enemyMidHealth.EnemymidHealth -= playerDamage.PlayerDamage;
         }
 
-        if (enemyLightHealth.EnemylightHealth < 1)
+        if (enemyMidHealth.EnemymidHealth < 1)
         {
             explode();
         }

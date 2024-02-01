@@ -5,7 +5,7 @@ using UnityEngine;
 public class SphereCollision : MonoBehaviour
 {
     public int EnemyDamage = 15;
-    public Heal health;
+    public heal1 health;
 
     private void OnCollisionEnter(Collision collision)
     {

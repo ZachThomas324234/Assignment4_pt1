@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class GenerateEnemies : MonoBehaviour
 {
-    public GameObject theEnemy;
-    public int xPos;
-    public int zPos;
-    public int enemyCount;
+    public GameObject enemyPrefab;
+    public int maxEnemyCount = 3;
 
     void Start()
     {
@@ -16,13 +14,19 @@ public class GenerateEnemies : MonoBehaviour
 
     IEnumerator EnemyDrop()
     {
-        while (enemyCount < 3)
+        int enemyCount = 0;
+
+        while (enemyCount < maxEnemyCount)
         {
-            xPos = Random.Range(-5, 5);
-            zPos = Random.Range(-25, -15);
-            Instantiate(theEnemy, new Vector3(xPos, 2, zPos), Quaternion.identity);
+            Vector3 spawnPosition = new Vector3(Random.Range(-5, 5), 2, Random.Range(-25, -15));
+            GameObject clone = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            
+            // Make sure to set the unique health variables for each enemy
+            LightEnemy lightEnemyScript = clone.GetComponent<LightEnemy>();
+            lightEnemyScript.InitializeHealth();
+
             yield return new WaitForSeconds(0.5f);
-            enemyCount += 1;
+            enemyCount++;
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class Heal : MonoBehaviour
+public class heal1 : MonoBehaviour
 {
     //audio
     public AudioSource meat1audio;
@@ -22,8 +22,10 @@ public class Heal : MonoBehaviour
     public int PlayerDamage = 25;
 
     //enemy health
-    public int EnemyMaxHealth = 25;
-    public int EnemyHealth = 30;
+    public int EnemylightMaxHealth = 30;
+    public int EnemylightHealth = 30;
+    public int EnemymidMaxHealth = 55;
+    public int EnemymidHealth = 55;
 
     //gameobjects
     public GameObject meat1;
@@ -46,6 +48,8 @@ public class Heal : MonoBehaviour
     public TextMeshProUGUI meatDisplay;
     public TextMeshProUGUI healthDisplay;
 
+    //healthslider
+    public HealthSLider healthBar;
     
     //start
     void Start()
@@ -81,20 +85,33 @@ public class Heal : MonoBehaviour
     //update is called once per frame
     void Update()
     {
+        //set ammo display, if it exists :D
+        if (meatDisplay != null)
+            meatDisplay.SetText(MeatAmount + " / " + MeatAmountMax);
+        
+        //set ammo display, if it exists :D
+        if (healthDisplay != null)
+            healthDisplay.SetText(PlayerHealth + " / " + PlayerMaxHealth);
+
         //right click function
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-        if (MeatAmount > 0)
-        {
-            if (!isEating)
-            {  
-            StartCoroutine (MeatDestroy());
+            if (MeatAmount > 0)
+            {
+                if (!isEating)
+                {  
+                StartCoroutine (MeatDestroy());
+                }
+
+                if (Input.GetKeyDown(KeyCode.Tab))
+                {
+                TakeDamage(20);
+                }
             }
-        }  
         }
     
         //no meat = no heal
-        if (MeatAmount < 1)
+        if (MeatAmount < 0)
         {
         HealAmount = 0;
         }
@@ -111,13 +128,12 @@ public class Heal : MonoBehaviour
         SceneManager.LoadScene(1);
         mouse.ShowMouse();
         }
-
-        //text of health amount
-        if (healthDisplay != null)
-            healthDisplay.SetText(PlayerHealth + " / " + PlayerMaxHealth);
-            
-            //text of meat amount
-        if (meatDisplay != null)
-            meatDisplay.SetText(MeatAmount + " / " + MeatAmountMax);
         }
+
+        void TakeDamage(int damageTaken)
+    {
+        PlayerHealth -= damagetaken;
+
+        healthBar.SetHealth(PlayerHealth);
+    }
 }

@@ -25,9 +25,9 @@ public class Explosion : MonoBehaviour
            
     void Update()  {}
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     { 
-        if (other.gameObject.name == "Bullet")
+        if (collision.collider.CompareTag("Ground"))
         {
             explode();
         }   
@@ -36,6 +36,7 @@ public class Explosion : MonoBehaviour
 
     public void explode()
     {
+        Debug.Log("touch");
         gameObject.SetActive(false);
 
         for (int x = 0; x < cubesInRow; x++) 
