@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class heal1 : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class heal1 : MonoBehaviour
     public int EnemylightHealth = 30;
     public int EnemymidMaxHealth = 55;
     public int EnemymidHealth = 55;
+    public int EnemylargeHealth = 80;
+    public int EnemylargeMaxHealth = 80;
 
     //gameobjects
     public GameObject meat1;
@@ -47,9 +50,6 @@ public class heal1 : MonoBehaviour
     //graphics
     public TextMeshProUGUI meatDisplay;
     public TextMeshProUGUI healthDisplay;
-
-    //healthslider
-    public HealthSLider healthBar;
     
     //start
     void Start()
@@ -102,11 +102,6 @@ public class heal1 : MonoBehaviour
                 {  
                 StartCoroutine (MeatDestroy());
                 }
-
-                if (Input.GetKeyDown(KeyCode.Tab))
-                {
-                TakeDamage(20);
-                }
             }
         }
     
@@ -129,11 +124,4 @@ public class heal1 : MonoBehaviour
         mouse.ShowMouse();
         }
         }
-
-        void TakeDamage(int damageTaken)
-    {
-        PlayerHealth -= damagetaken;
-
-        healthBar.SetHealth(PlayerHealth);
-    }
 }
