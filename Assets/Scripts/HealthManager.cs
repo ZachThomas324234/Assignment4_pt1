@@ -8,6 +8,8 @@ public class HealthManager : MonoBehaviour
     public Image healthBar;
     public float healthAmount = 100f;
 
+    public heal1 Heal1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,28 +19,24 @@ public class HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            TakeDamage(20);
-        }
 
         if(Input.GetKeyDown(KeyCode.Tab))
         {
             Heal(5);
         }
 
-        void TakeDamage(float damage)
+        void TakeDamage(int damage)
         {
-            healthAmount -= damage;
-            healthBar.fillAmount = healthAmount / 100f;
+            Heal1.PlayerHealth -= damage;
+            healthBar.fillAmount = Heal1.PlayerHealth / 100f;
         }
 
-        void Heal(float healingAmount)
+        void Heal(int healingAmount)
         {
-            healthAmount += healingAmount;
-            healthAmount = Mathf.Clamp(healthAmount, 0, 100);
+            Heal1.PlayerHealth += healingAmount;
+            Heal1.PlayerHealth = Mathf.Clamp(Heal1.PlayerHealth, 0, 100);
 
-            healthBar.fillAmount = healthAmount / 100f;
+            healthBar.fillAmount = Heal1.PlayerHealth / 100f;
         }
         
     }

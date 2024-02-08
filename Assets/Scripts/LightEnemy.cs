@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LightEnemy : MonoBehaviour
 {
@@ -15,6 +18,10 @@ public class LightEnemy : MonoBehaviour
     public float explosionUpward = 0.4f;
 
     public AudioSource enemyDeathSound;
+
+    public HealthManager healthManager;
+
+    public heal1 Heal1;
 
     void Start()
     {
@@ -37,7 +44,7 @@ public class LightEnemy : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             // Damage the player
-            playerDamage.PlayerHealth -= enemyDamage.EnemyDamage;
+            TakeDamage(20);
         }
 
         if (collision.collider.CompareTag("Bullet"))
@@ -56,6 +63,12 @@ public class LightEnemy : MonoBehaviour
     {
         // Add any necessary update logic here
     }
+    
+    void TakeDamage(int damage)
+        {
+            playerDamage.PlayerHealth -= damage;
+            healthManager.healthBar.fillAmount = playerDamage.PlayerHealth / 100f;
+        }
 
     void explode()
     {

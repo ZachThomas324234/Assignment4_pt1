@@ -50,6 +50,7 @@ public class heal1 : MonoBehaviour
     //graphics
     public TextMeshProUGUI meatDisplay;
     public TextMeshProUGUI healthDisplay;
+    public Image healthBar;
     
     //start
     void Start()
@@ -76,11 +77,19 @@ public class heal1 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         meat3audio.Play();
         meat3.SetActive(false);
-        PlayerHealth += HealAmount;
+        Heal(30);
         yield return new WaitForSeconds(0.5f);
         chicken.SetActive(false);
         isEating = false;
     }
+
+    void Heal(int HealAmount)
+        {
+            PlayerHealth += HealAmount;
+            PlayerHealth = Mathf.Clamp(PlayerHealth, 0, 100);
+
+            healthBar.fillAmount = PlayerHealth / 100f;
+        }
 
     //update is called once per frame
     void Update()
