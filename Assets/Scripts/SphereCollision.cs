@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class SphereCollision : MonoBehaviour
 {
-    public int EnemyDamage = 15;
+    public int EnemyDamage = 20;
     public heal1 health;
     public HealthManager healthManager;
     public heal1 playerDamage;
 
-    private void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
-            TakeDamage(20);
+            TakeDamage(EnemyDamage);
             Destroy(gameObject);
         }
     }
